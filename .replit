@@ -1,0 +1,31 @@
+entrypoint = "index.js"
+modules = ["nodejs-22"]
+hidden = [".config", "package-lock.json"]
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
+
+[nix]
+channel = "stable-24_11"
+packages = ["nix-output-monitor"]
+
+[deployment]
+run = ["node", "index.js"]
+deploymentTarget = "autoscale"
+ignorePorts = false
+
+[workflows]
+runButton = "Deploy and Run Bot"
+
+[[workflows.workflow]]
+name = "Deploy and Run Bot"
+author = 40339485
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node deploy-commands.js"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node index.js"
