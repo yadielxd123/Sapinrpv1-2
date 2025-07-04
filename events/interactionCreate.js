@@ -31,14 +31,28 @@ module.exports = {
         return interaction.reply({ content: '❌ No tienes permisos para cerrar tickets.', ephemeral: true });
       }
 
-      // Enviar log de cierre antes de eliminar el canal
-      await ticketManager.sendCloseTicketLog(interaction);
+      // Buscar quién reclamó el ticket
+      const messages = await interaction.channel.messages.fetch({ limit: 50 });
+      let claimedBy = null;
+      
+      for (const message of messages.values()) {
+        if (message.content.includes('🎯 Ticket reclamado por')) {
+          const userMention = message.content.match(/<@(\d+)>/);
+          if (userMention) {
+            claimedBy = await interaction.client.users.fetch(userMention[1]).catch(() => null);
+          }
+          break;
+        }
+      }
 
-      await interaction.reply({ content: '🔒 Cerrando ticket en 3 segundos...', ephemeral: false });
+      // Enviar log de cierre antes de eliminar el canal
+      await ticketManager.sendCloseTicketLog(interaction, claimedBy);
+
+      await interaction.reply({ content: '🔒 Cerrando ticket en 5 segundos...', ephemeral: false });
 
       setTimeout(async () => {
         await interaction.channel.delete().catch(() => {});
-      }, 3000);
+      }, 5000);
     }
 
     if (interaction.isButton() && interaction.customId === 'reclamar_ticket') {
