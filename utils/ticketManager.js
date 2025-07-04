@@ -1,4 +1,3 @@
-
 const {
   ChannelType,
   PermissionFlagsBits,
@@ -30,19 +29,17 @@ module.exports = {
     const motivosNames = {
       'duda': 'Dudas Generales',
       'reporte': 'Reportes a Staff',
-      'apelar': 'CKS y Apelaciones',
-      'otro': 'Otros',
       'alianzas': 'Alianzas',
       'reportar-usuario': 'Reportar Usuario',
       'cks-apelaciones': 'CKS y Apelaciones',
       'contactar-direccion': 'Contactar Dirección',
       'liverys': 'Liverys',
-      'estado-mdt': 'Estado MDT',
+      'otro': 'Otros',
       'logs-bot': 'Logs Bot'
     };
 
     const ticketId = this.generateTicketId();
-    
+
     // Actualizar el topic del canal con el ID del ticket
     await ticketChannel.setTopic(`Ticket de ${interaction.user.tag} | Motivo: ${motivo} | ID: ${ticketId}`);
 
@@ -82,20 +79,18 @@ module.exports = {
     const motivosNames = {
       'duda': 'Dudas Generales',
       'reporte': 'Reportes a Staff',
-      'apelar': 'CKS y Apelaciones',
-      'otro': 'Otros',
       'alianzas': 'Alianzas',
       'reportar-usuario': 'Reportar Usuario',
       'cks-apelaciones': 'CKS y Apelaciones',
       'contactar-direccion': 'Contactar Dirección',
       'liverys': 'Liverys',
-      'estado-mdt': 'Estado MDT',
+      'otro': 'Otros',
       'logs-bot': 'Logs Bot'
     };
 
     // Crear transcripción del ticket
     const transcript = await this.createTranscript(interaction.channel, user, motivo, ticketId, claimedBy, interaction.user);
-    
+
     const embed = new EmbedBuilder()
       .setTitle('🔒 Transcripción de Ticket Cerrado')
       .setColor(0xff0000)
@@ -151,14 +146,12 @@ module.exports = {
       const motivosNames = {
         'duda': 'Dudas Generales',
         'reporte': 'Reportes a Staff',
-        'apelar': 'CKS y Apelaciones',
-        'otro': 'Otros',
         'alianzas': 'Alianzas',
         'reportar-usuario': 'Reportar Usuario',
         'cks-apelaciones': 'CKS y Apelaciones',
         'contactar-direccion': 'Contactar Dirección',
         'liverys': 'Liverys',
-        'estado-mdt': 'Estado MDT',
+        'otro': 'Otros',
         'logs-bot': 'Logs Bot'
       };
 
@@ -180,14 +173,14 @@ module.exports = {
       sortedMessages.forEach(message => {
         const timestamp = new Date(message.createdTimestamp).toLocaleString('es-ES');
         transcript += `[${timestamp}] ${message.author.tag}: ${message.content}\n`;
-        
+
         // Agregar información de archivos adjuntos si los hay
         if (message.attachments.size > 0) {
           message.attachments.forEach(attachment => {
             transcript += `    📎 Archivo adjunto: ${attachment.name} (${attachment.url})\n`;
           });
         }
-        
+
         // Agregar información de embeds si los hay
         if (message.embeds.length > 0) {
           message.embeds.forEach(embed => {
@@ -195,7 +188,7 @@ module.exports = {
             if (embed.description) transcript += `    📝 Descripción: ${embed.description}\n`;
           });
         }
-        
+
         transcript += '\n';
       });
 

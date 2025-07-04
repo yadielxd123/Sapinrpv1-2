@@ -45,12 +45,6 @@ module.exports = {
             description: 'Reporta a un usuario o problema'
           },
           {
-            label: 'CKS y Apelaciones',
-            value: 'apelar',
-            emoji: '📢',
-            description: 'Solicita revisión de una sanción'
-          },
-          {
             label: 'Alianzas',
             value: 'alianzas',
             emoji: '🤝',
@@ -63,10 +57,10 @@ module.exports = {
             description: 'Reportar comportamiento de usuario'
           },
           {
-            label: 'CKS y Apelaciones Avanzadas',
+            label: 'CKS y Apelaciones',
             value: 'cks-apelaciones',
             emoji: '⚖️',
-            description: 'Casos especiales de CKS y apelaciones'
+            description: 'Casos de CKS y apelaciones'
           },
           {
             label: 'Contactar Dirección',
@@ -79,18 +73,6 @@ module.exports = {
             value: 'liverys',
             emoji: '🎨',
             description: 'Temas relacionados con liverys'
-          },
-          {
-            label: 'Estado MDT',
-            value: 'estado-mdt',
-            emoji: '💻',
-            description: 'Consultas sobre MDT'
-          },
-          {
-            label: 'Logs Bot',
-            value: 'logs-bot',
-            emoji: '🤖',
-            description: 'Temas relacionados con el bot'
           },
           {
             label: 'Otros',
