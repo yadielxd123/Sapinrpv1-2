@@ -19,7 +19,7 @@ for (const file of commandFiles) {
   if ('data' in command && 'execute' in command) {
     commands.push(command.data.toJSON());
   } else {
-    console.warn(`[ADVERTENCIA] El comando en ${filePath} no tiene las propiedades "data" o "execute".`);
+    console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
   }
 }
 
